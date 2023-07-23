@@ -3,7 +3,6 @@ import torch
 import models 
 import argparse
 
-# 設定訓練參數
 def get_argument():
     parser = argparse.ArgumentParser()
     parser.add_argument('--datasets', type=str, default="PLUSVein")
