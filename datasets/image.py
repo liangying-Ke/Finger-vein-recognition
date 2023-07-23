@@ -1,11 +1,10 @@
 # 匯入基本的套件
+import cv2
 import torch
 import pickle
 import numpy as np
-import cv2
-from PIL import Image
-from torch.utils.data import Dataset
 import albumentations as A
+from torch.utils.data import Dataset
 from albumentations.pytorch import ToTensorV2
 
 class ImagesDataset(Dataset):
