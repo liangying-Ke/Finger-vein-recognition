@@ -1,4 +1,3 @@
-# 匯入基本的套件
 import cv2
 import torch
 import pickle
