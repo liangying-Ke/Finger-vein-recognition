@@ -8,7 +8,6 @@ from torch.utils.data import Dataset
 from albumentations.pytorch import ToTensorV2
 
 class ImagesDataset(Dataset):
-    # 呼叫此類別時所要進行的初始化
     def __init__(self, args, data_type, phase='train'):
         self.args = args
         self.phase = phase
