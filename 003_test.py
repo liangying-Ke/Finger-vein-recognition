@@ -43,7 +43,6 @@ def _get_model(args):
     return model
 
 def test(*kwargs):
-    # 紀錄預測結果、目標標籤
     args = kwargs[0]
     model = kwargs[1]
     DataLoader = kwargs[-1]
@@ -76,7 +75,7 @@ def main(args):
         print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
         print('='*100)
         for metrics in ['F1', 'Acc', 'Loss']:
-            path = os.path.join(args.root_model, data_type) if data_type is not None else args.root_model
+            path = os.path.join(args.root_model, str(data_type)) 
             weights = torch.load(os.path.join(path, 'switchDBB', f"Backbone_ckpt.best{metrics}.pth.tar"))
             Test_DataLoader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.workers, pin_memory=True)
             model.load_state_dict(weights['model_state_dict']) 
