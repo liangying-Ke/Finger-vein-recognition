@@ -77,20 +77,20 @@ def create_PLUSVein_annotation(args):
 						trainingSamples.append({'path':path, 'label':sub2classes[identity]})
 		return trainingSamples, validatingSamples, testingSamples
 	
-	LED_trainingSamples, LED_validatingSamples, LED_testingSamples = iter(
+	trainingSamples_LED, validatingSamples_LED, testingSamples_LED = iter(
 		args.PLUSVein_root, os.path.join('PLUS-FV3-LED', 'PALMAR', '01'))
-	LASER_trainingSamples, LASER_validatingSamples, LASER_testingSamples = iter(
+	trainingSamples_LASER, validatingSamples_LASER, testingSamples_LASER = iter(
 		args.PLUSVein_root, os.path.join('PLUS-FV3-Laser', 'PALMAR', '01'))
 	pickle.dump({
 		'LED':{
-			'Training_Set':LED_trainingSamples, 
-			'Validating_Set':LED_validatingSamples, 
-			'Testing_Set':LED_testingSamples,
+			'Training_Set':trainingSamples_LED, 
+			'Validating_Set':validatingSamples_LED, 
+			'Testing_Set':testingSamples_LED,
 		},
 		'LASER':{
-			'Training_Set':LASER_trainingSamples, 
-			'Validating_Set':LASER_validatingSamples, 
-			'Testing_Set':LASER_testingSamples,
+			'Training_Set':trainingSamples_LASER, 
+			'Validating_Set':validatingSamples_LASER, 
+			'Testing_Set':testingSamples_LASER,
 		}
 	}, open(args.PLUSVein_annotation_file, 'wb'))
 
