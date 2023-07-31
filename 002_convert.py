@@ -33,7 +33,7 @@ def convert(args):
         for metrics in ['F1', 'Acc', 'Loss']:
             print(f'Data type: {data_type}, metrics: {metrics}')
             model = _get_model(args)
-            path = os.path.join(args.root_model, data_type) if data_type is not None else args.root_model
+            path = os.path.join(args.root_model, str(data_type)) 
             weights = torch.load(os.path.join(path, f"Backbone_ckpt.best{metrics}.pth.tar"))
             model.load_state_dict(weights['model_state_dict']) 
             for m in model.modules():
