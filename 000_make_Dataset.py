@@ -17,7 +17,7 @@ def get_argument():
 
 
 def create_FVUSM_annotation(args):
-	def iter(root, Training_Samples=[], Validating_Samples=[], Testing_Samples=[], sub2classes={}):
+	def iter(root, trainingSamples=[], validatingSamples=[], testingSamples=[], sub2classes={}):
 		for sub in tqdm(os.listdir(root)):
 			if not os.path.isdir(os.path.join(root, sub)):
 				continue
@@ -31,26 +31,26 @@ def create_FVUSM_annotation(args):
 		
 			for path in paths:
 				if path in forValidate:
-					Validating_Samples.append({'path':path, 'label':sub2classes[sub]})
+					validatingSamples.append({'path':path, 'label':sub2classes[sub]})
 				elif path in forTest:
-					Testing_Samples.append({'path':path, 'label':sub2classes[sub]})
+					testingSamples.append({'path':path, 'label':sub2classes[sub]})
 				else:
-					Training_Samples.append({'path':path, 'label':sub2classes[sub]})
-		return Training_Samples, Validating_Samples, Testing_Samples, sub2classes
+					trainingSamples.append({'path':path, 'label':sub2classes[sub]})
+		return trainingSamples, validatingSamples, testingSamples, sub2classes
 	
-	Training_Samples, Validating_Samples, Testing_Samples, sub2classes = iter(os.path.join(args.FVUSM_root, '1st_session', 'extractedvein'))
-	Training_Samples, Validating_Samples, Testing_Samples, sub2classes = iter(os.path.join(args.FVUSM_root, '2nd_session', 'extractedvein'), Training_Samples, Validating_Samples, Testing_Samples, sub2classes)
+	trainingSamples, validatingSamples, testingSamples, sub2classes = iter(os.path.join(args.FVUSM_root, '1st_session', 'extractedvein'))
+	trainingSamples, validatingSamples, testingSamples, sub2classes = iter(os.path.join(args.FVUSM_root, '2nd_session', 'extractedvein'), trainingSamples, validatingSamples, testingSamples, sub2classes)
 	pickle.dump({
-		'Training_Set':Training_Samples, 
-		'Validating_Set':Validating_Samples, 
-		'Testing_Set':Testing_Samples,
+		'Training_Set':trainingSamples, 
+		'Validating_Set':validatingSamples, 
+		'Testing_Set':testingSamples,
 	}, open(args.FVUSM_annotation_file, 'wb'))
 
 
 def create_PLUSVein_annotation(args):
 	def iter(root, Where):
 		sub2classes = {}
-		Training_Samples, Validating_Samples, Testing_Samples = [], [], []
+		trainingSamples, validatingSamples, testingSamples = [], [], []
 		data_path = os.path.join(root, Where)
 
 		for folder in tqdm(os.listdir(data_path)):
@@ -70,27 +70,27 @@ def create_PLUSVein_annotation(args):
 			
 				for path in filter_paths:
 					if path in forValidate:
-						Validating_Samples.append({'path':path, 'label':sub2classes[identity]})
+						validatingSamples.append({'path':path, 'label':sub2classes[identity]})
 					elif path in forTest:
-						Testing_Samples.append({'path':path, 'label':sub2classes[identity]})
+						testingSamples.append({'path':path, 'label':sub2classes[identity]})
 					else:
-						Training_Samples.append({'path':path, 'label':sub2classes[identity]})
-		return Training_Samples, Validating_Samples, Testing_Samples
+						trainingSamples.append({'path':path, 'label':sub2classes[identity]})
+		return trainingSamples, validatingSamples, testingSamples
 	
-	LED_Training_Samples, LED_Validating_Samples, LED_Testing_Samples = iter(
+	LED_trainingSamples, LED_validatingSamples, LED_testingSamples = iter(
 		args.PLUSVein_root, os.path.join('PLUS-FV3-LED', 'PALMAR', '01'))
-	LASER_Training_Samples, LASER_Validating_Samples, LASER_Testing_Samples = iter(
+	LASER_trainingSamples, LASER_validatingSamples, LASER_testingSamples = iter(
 		args.PLUSVein_root, os.path.join('PLUS-FV3-Laser', 'PALMAR', '01'))
 	pickle.dump({
 		'LED':{
-			'Training_Set':LED_Training_Samples, 
-			'Validating_Set':LED_Validating_Samples, 
-			'Testing_Set':LED_Testing_Samples,
+			'Training_Set':LED_trainingSamples, 
+			'Validating_Set':LED_validatingSamples, 
+			'Testing_Set':LED_testingSamples,
 		},
 		'LASER':{
-			'Training_Set':LASER_Training_Samples, 
-			'Validating_Set':LASER_Validating_Samples, 
-			'Testing_Set':LASER_Testing_Samples,
+			'Training_Set':LASER_trainingSamples, 
+			'Validating_Set':LASER_validatingSamples, 
+			'Testing_Set':LASER_testingSamples,
 		}
 	}, open(args.PLUSVein_annotation_file, 'wb'))
 
