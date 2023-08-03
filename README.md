@@ -12,3 +12,7 @@ The ILCNN proposed in our paper is trained from the [FV-USM](http://drfendi.com/
 * pytorch-model-summary 0.1.2
 * ptflops 
 * tqdm 
+
+# Citation
+%--------------------------------
+%--------------------------------
