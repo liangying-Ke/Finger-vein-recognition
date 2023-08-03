@@ -14,7 +14,8 @@ The ILCNN proposed in our paper is trained from the [FV-USM](http://drfendi.com/
 * tqdm 
 
 # Citation
-`@Article{bioengineering10080919,
+```
+@Article{bioengineering10080919,
   title={Improved Lightweight Convolutional Neural Network for Finger Vein Recognition System},
   author={Hsia, Chih-Hsien and Ke, Liang-Ying and Chen, Sheng-Tao},
   booktitle={Bioengineering},
@@ -22,6 +23,7 @@ The ILCNN proposed in our paper is trained from the [FV-USM](http://drfendi.com/
   number={8},
   pages={919},
   year={2023}
-}`
+}
+```
 
 
