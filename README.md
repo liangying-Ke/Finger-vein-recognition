@@ -1,4 +1,4 @@
-# Finger-vein-recognition
+# Improved Lightweight Convolutional Neural Network for Finger Vein Recognition System
 This repository implements an improved lightweight convolutional neural network (ILCNN) for finger vein recognition. 
 
 # Data preparation
